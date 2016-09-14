@@ -24,7 +24,7 @@ namespace _04_Pig_Latin
         public string AddAy(string word)
         {
             // Simply the most important method in the entire class. 
-            return word += "ay ";
+            return word += "ay";
         }
 
         public string PigFormat(string word)
@@ -42,8 +42,7 @@ namespace _04_Pig_Latin
                 }
                 //Format sentences without QU
                 if (vowels.IndexOf(c) >= 0)
-                {
-                    
+                {                    
                     newWord = word.Substring(word.IndexOf(c)) + word.Substring(0, word.IndexOf(c));
                     break;
                 }
@@ -51,6 +50,43 @@ namespace _04_Pig_Latin
 
             //Add ay
             newWord = AddAy(newWord);
+
+            //Fix punctuation and caps
+            newWord = FixPunctuation(newWord);
+            newWord = FixCaps(newWord);
+
+            return newWord + " ";
+        }
+
+        public string FixPunctuation(string word)
+        {
+            string punctuations = ",.!?";
+            string newWord = word;
+
+            foreach (char c in word)
+            {
+                if (punctuations.IndexOf(c) >= 0)
+                {
+                    newWord = word.Substring(0, word.IndexOf(c)) + word.Substring(word.IndexOf(c) + 1) + c;
+                    break;
+                }
+            }
+
+            return newWord;
+        }
+
+        public string FixCaps(string word)
+        {
+            string newWord = word.ToLower();
+
+            foreach (char c in word)
+            {
+                if (char.IsUpper(c))
+                {
+                    newWord = newWord.Substring(0, 1).ToUpper() + newWord.Substring(1);
+                    break;
+                }
+            }
 
             return newWord;
         }

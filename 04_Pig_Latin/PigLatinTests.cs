@@ -73,5 +73,21 @@ namespace _04_Pig_Latin
         // write a test asserting that capitalized words are still capitalized (but with a different initial capital letter, of course)
         // retain the punctuation from the original phrase
 
+        [TestMethod]
+
+        public void TranslateWithPunctuations()
+        {
+            Translator translator = new Translator();
+            Assert.AreEqual("Ellohay, ortshay entencesay.", translator.Translate("Hello, short sentence."));
+        }
+
+        [TestMethod]
+
+        public void TranslateWithMorePunctuations()
+        {
+            Translator translator = new Translator();
+            Assert.AreEqual("Ellohay, iggerbay entencesay. Ithway! anday Isthay?", translator.Translate("Hello, bigger sentence. With! and This?"));
+        }
+
     }
 }
